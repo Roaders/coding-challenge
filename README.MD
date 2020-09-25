@@ -66,5 +66,5 @@ If the help guide is displayed then `process.exit()` should be called immediatel
 ```bash
 npm install
 npm run watch-build
-node dist .\dist\example\exampleConfigWithHelp.js
+node .\dist\example\exampleConfigWithHelp.js
 ```
