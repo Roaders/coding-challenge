@@ -33,4 +33,6 @@ export const args = parse<ICopyFilesArguments>(
     },
 );
 
+// Application executes using the arguments object
+
 console.log(`args: ${JSON.stringify(args)}`);

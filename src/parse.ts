@@ -1,4 +1,4 @@
-import { ArgumentConfig, ParseOptions, UnkownProperties, CommandLineOption } from './contracts';
+import { ArgumentConfig, ParseOptions, CommandLineOption } from './contracts';
 import commandLineArgs from 'command-line-args';
 import commandLineUsage from 'command-line-usage';
 import { createCommandLineConfig, normaliseConfig, visit } from './helpers';
@@ -9,7 +9,7 @@ export function parse<T, P extends ParseOptions<T> = ParseOptions<T>>(
     config: ArgumentConfig<T>,
     options: P = {} as P,
     exitProcess = true,
-): T & UnkownProperties<P> {
+): T {
     /**
      * Our list of expected command line arguments
      */
@@ -17,7 +17,7 @@ export function parse<T, P extends ParseOptions<T> = ParseOptions<T>>(
     /**
      * An object containing the values specified on the command line
      */
-    const parsedArgs: T & UnkownProperties<P> = commandLineArgs(optionList, options) as any;
+    const parsedArgs = commandLineArgs(optionList, options) as any;
 
     return parsedArgs;
 }

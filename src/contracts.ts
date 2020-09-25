@@ -71,7 +71,7 @@ export type MultiplePropertyOptions<T> = Array<any> extends T ? { multiple: true
 
 export type HeaderLevel = 1 | 2 | 3 | 4 | 5;
 
-export interface ArgsParseOptions<T extends { [name: string]: any }> {
+export interface ParseOptions<T extends { [name: string]: any }> {
     /**
      * An array of strings which if present will be parsed instead of `process.argv`.
      */
@@ -125,31 +125,6 @@ export interface ArgsParseOptions<T extends { [name: string]: any }> {
      */
     optionSections?: OptionContent[];
 }
-
-export interface PartialParseOptions extends ArgsParseOptions<any> {
-    /**
-     * If `true`, `commandLineArgs` will not throw on unknown options or values, instead returning them in the `_unknown` property of the output.
-     */
-    partial: true;
-}
-
-export interface StopParseOptions extends ArgsParseOptions<any> {
-    /**
-     * If `true`, `commandLineArgs` will not throw on unknown options or values. Instead, parsing will stop at the first unknown argument
-     * and the remaining arguments returned in the `_unknown` property of the output. If set, `partial: true` is implied.
-     */
-    stopAtFirstUnknown: true;
-}
-
-type UnknownProps = { _unknown: string[] };
-
-export type UnkownProperties<T> = T extends PartialParseOptions
-    ? UnknownProps
-    : T extends StopParseOptions
-    ? UnknownProps
-    : unknown;
-
-export type ParseOptions<T> = ArgsParseOptions<T> | PartialParseOptions | StopParseOptions;
 
 export interface SectionHeader {
     /** The section header, always bold and underlined. */
